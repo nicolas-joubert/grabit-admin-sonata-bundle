@@ -1,0 +1,63 @@
+{
+  "name": "nicolas-joubert/grabit-admin-sonata-bundle",
+  "description": "Sonata Admin for GrabitBundle",
+  "keywords": ["grab", "crawler", "admin", "sonata"],
+  "homepage": "https://github.com/nicolas-joubert/grabit-admin-sonata-bundle",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nicolas Joubert",
+      "homepage": "https://www.nvirenque.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "NicolasJoubert\\GrabitAdminSonataBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "NicolasJoubert\\GrabitAdminSonataBundle\\": "tests/"
+    }
+  },
+  "require": {
+    "php": ">=8.3",
+    "ext-iconv": "*",
+    "ext-intl": "*",
+    "doctrine/dbal": "^3||^4",
+    "doctrine/doctrine-bundle": "^2.11",
+    "doctrine/orm": "^3.0||^4.0",
+    "nicolas-joubert/grabit-bundle": "dev-main",
+    "sonata-project/admin-bundle": "^4.29",
+    "sonata-project/doctrine-orm-admin-bundle": "^4.16",
+    "symfony/flex": "^2",
+    "symfony/framework-bundle": "7.2.*",
+    "symfony/runtime": "7.2.*",
+    "symfony/twig-bundle": "7.2.*",
+    "symfony/yaml": "7.2.*",
+    "twig/extra-bundle": "^3.8",
+    "twig/intl-extra": "^3.8"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "*",
+    "phpstan/extension-installer": "*",
+    "phpstan/phpstan": "*",
+    "phpstan/phpstan-doctrine": "*",
+    "phpstan/phpstan-symfony": "*",
+    "phpunit/phpunit": "<10.0",
+    "rector/rector": "*",
+    "vincentlanglet/twig-cs-fixer": "*"
+  },
+  "suggest": {
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true,
+      "phpstan/extension-installer": true,
+      "symfony/flex": true,
+      "symfony/runtime": true
+    },
+    "sort-packages": true
+  }
+}
