@@ -1,0 +1,34 @@
+Feeds: Flux
+Feed List: Liste des Flux
+Source List: Liste des Sources
+Template List: Liste des Templates
+ExtractedData: Données extraites
+Extracted Data: Données extraites
+Extracted Data List: Liste des Données extraites
+
+Label: Libellé
+Headers: Entêtes de la requête HTTP
+Template: Modèle
+Stop On Last Unique Content Id: Stopper l'exécution sur le dernier identifiant unique
+Result Format: Format du résultat
+Enabled: Activé
+Max Number Error: Nombre maximum d'erreurs
+Count Error: Nombre d'erreurs
+Last Error: Dernière erreur
+Feed: Flux
+Extracted Data Count: Nombre de données extraites
+Extracted Datas: Données extraites
+Title: Titre
+Items Per Page: Nombre d'éléments par page
+Unique Content Id: Identifiant unique du contenu
+Content: Contenu
+Content Title: Titre du contenu
+Published At: Date de publication
+Created At: Date de création
+Results: Résultats
+
+Test grabbing: Tester l'extraction
+
+enum.source_proxy.none: Aucun
+enum.source_proxy.squid: Squid (https://www.squid-cache.org/)
+enum.source_proxy.flaresolverr: Flaresolverr (https://github.com/FlareSolverr/FlareSolverr)

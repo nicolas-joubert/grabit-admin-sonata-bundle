@@ -1,0 +1,12 @@
+template:
+    list:
+        symfony_blog: 'Symfony blog'
+        symfony_ux_blog: 'Symfony UX blog'
+        sylius_blog: 'Sylius blog'
+    type:
+        auto: 'Automatic'
+        text: 'Text'
+        link: 'Link'
+        image: 'Image'
+        timestamp: 'Timestamp'
+        current_url: 'Source url'

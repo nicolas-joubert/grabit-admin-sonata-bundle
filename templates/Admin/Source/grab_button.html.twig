@@ -1,0 +1,7 @@
+{% if object is defined and object is not empty %}
+    <li>
+        <a class="sonata-action-element" href="{{ admin.generateObjectUrl('grab', object) }}">
+            <i class="fas fa-binoculars" aria-hidden="true"></i>{{ 'Test grabbing'|trans({}, admin.translationDomain) }}
+        </a>
+    </li>
+{% endif %}

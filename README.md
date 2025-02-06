@@ -1,2 +1,16 @@
-# grabit-admin-sonata-bundle
-Sonata Admin for GrabitBundle
+# GrabitAdminSonataBundle
+
+Sonata Admin for [GrabitBundle](https://github.com/nicolas-joubert/grabit-bundle).
+
+## Documentation
+
+For installation and usage, check out the [documentation](docs/index.md).
+
+## Support & Contribution
+
+For general support and questions, please use [Github](https://github.com/nicolas-joubert/grabit-admin-sonata-bundle/issues).
+
+## License
+
+This bundle is under the MIT license.
+For the whole copyright, see the [LICENSE](LICENSE) file distributed with this source code.

@@ -1,0 +1,16 @@
+template:
+    list:
+        symfony_blog: 'Blog Symfony'
+        sylius_blog: 'Blog Sylius'
+        prestaconcept_blog_atom: 'Blog Prestaconcept'
+        ticketmaster: 'Ticketmaster'
+        ticketmaster_api: 'API Ticketmaster'
+        francebillet: 'FranceBillet'
+        allocine: 'Allociné'
+    type:
+        auto: 'Automatique'
+        text: 'Texte'
+        link: 'Lien'
+        image: 'Image'
+        timestamp: 'Horodatage UNIX'
+        current_url: 'Url de la Source'

@@ -1,0 +1,68 @@
+services:
+  grabit_sonata_admin.admin.configuration.source:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Admin\SourceAdmin
+    calls:
+      - [ addServices, ['@grabit.grabber.template'] ]
+      - [ setTranslationDomain, [ 'GrabitSonataAdminBundle' ] ]
+    tags:
+      - { name: sonata.admin, model_class: '%grabit.model.source.class%', controller: 'grabit_sonata_admin.controller.admin.source_controller', manager_type: orm, group: Configuration, label: Sources }
+
+  grabit_sonata_admin.admin.configuration.feed:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Admin\FeedAdmin
+    calls:
+      - [ setTranslationDomain, [ 'GrabitSonataAdminBundle' ] ]
+    tags:
+      - { name: sonata.admin, model_class: '%grabit_front_feed.model.feed.class%', controller: ~, manager_type: orm, group: Configuration, label: Feeds }
+
+  grabit_sonata_admin.admin.configuration.template:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Admin\TemplateAdmin
+    calls:
+      - [ setTranslationDomain, [ 'GrabitSonataAdminBundle' ] ]
+    tags:
+      - { name: sonata.admin, model_class: '%grabit.model.template.class%', controller: ~, manager_type: orm, group: Configuration, label: Templates }
+
+  grabit_sonata_admin.admin.data.extracted_data:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Admin\ExtractedDataAdmin
+    calls:
+      - [ setTranslationDomain, [ 'GrabitSonataAdminBundle' ] ]
+    tags:
+      - { name: sonata.admin, model_class: '%grabit.model.extracted_data.class%', controller: ~, manager_type: orm, group: Data, label: ExtractedData }
+
+  grabit_sonata_admin.controller.admin.source_controller:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Controller\Admin\SourceController
+    autoconfigure: true
+    autowire: true
+    arguments:
+      - '@grabit.grabber.grabber'
+    tags:
+      - { name: controller.service_arguments }
+
+  grabit_sonata_admin.form.source_headers_type:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Form\SourceHeadersType
+    tags:
+      - { name: form.type }
+        
+  grabit_sonata_admin.form.template_actions_type:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Form\TemplateActionsType
+    tags:
+      - { name: form.type }
+        
+  grabit_sonata_admin.form.template_configuration_type:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Form\TemplateConfigurationType
+    tags:
+      - { name: form.type }
+        
+  grabit_sonata_admin.form.template_content_type:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Form\TemplateContentType
+    tags:
+      - { name: form.type }
+
+  grabit_sonata_admin.twig.show_extension:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Twig\Extension\ShowExtension
+    tags:
+      - { name: twig.extension }
+        
+  grabit_sonata_admin.twig.show_extension_runtime:
+    class: NicolasJoubert\GrabitAdminSonataBundle\Twig\Runtime\ShowExtensionRuntime
+    tags:
+      - { name: twig.runtime }

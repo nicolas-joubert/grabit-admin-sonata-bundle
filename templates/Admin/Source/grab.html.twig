@@ -1,0 +1,36 @@
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{%- block actions -%}
+    {{ include('@SonataAdmin/CRUD/action_buttons.html.twig') }}
+{%- endblock -%}
+
+{% block title %}
+    {{ 'Test grabbing'|trans({}, admin.translationDomain) }}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ 'Test grabbing'|trans({}, admin.translationDomain) }} "{{ object }}"
+{% endblock %}
+
+{% block sonata_admin_content %}
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h4 class="box-title">{{ 'Results'|trans({}, admin.translationDomain) }}</h4>
+                </div>
+                <div class="box-body">
+                    <pre>{{ grabbedItems|print_r() }}</pre>
+                    <div class="alert alert-danger">
+                        {{ grabbedError }}
+                    </div>
+                    {% if grabbedDebug is not empty %}
+                        <div class="alert alert-danger">
+                            {{ grabbedDebug }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -24,23 +24,21 @@
   "require": {
     "php": ">=8.3",
     "ext-iconv": "*",
-    "ext-intl": "*",
     "doctrine/dbal": "^3||^4",
     "doctrine/doctrine-bundle": "^2.11",
     "doctrine/orm": "^3.0||^4.0",
-    "nicolas-joubert/grabit-bundle": "dev-main",
+    "nicolas-joubert/grabit-bundle": "^1.0",
     "sonata-project/admin-bundle": "^4.29",
     "sonata-project/doctrine-orm-admin-bundle": "^4.16",
     "symfony/flex": "^2",
     "symfony/framework-bundle": "7.2.*",
     "symfony/runtime": "7.2.*",
     "symfony/twig-bundle": "7.2.*",
-    "symfony/yaml": "7.2.*",
-    "twig/extra-bundle": "^3.8",
-    "twig/intl-extra": "^3.8"
+    "symfony/yaml": "7.2.*"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "*",
+    "nicolas-joubert/grabit-front-feed-bundle": "dev-main",
     "phpstan/extension-installer": "*",
     "phpstan/phpstan": "*",
     "phpstan/phpstan-doctrine": "*",
@@ -50,6 +48,9 @@
     "vincentlanglet/twig-cs-fixer": "*"
   },
   "suggest": {
+    "nicolas-joubert/grabit-front-feed-bundle": "Atom feed frontend for GrabitBundle",
+    "sonata-project/intl-bundle": "For better i18n support",
+    "sonata-project/user-bundle": "For user and security management"
   },
   "config": {
     "allow-plugins": {
