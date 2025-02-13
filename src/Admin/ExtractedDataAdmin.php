@@ -19,6 +19,19 @@ use Sonata\AdminBundle\Show\ShowMapper;
  */
 final class ExtractedDataAdmin extends AbstractAdmin
 {
+    /**
+     * @var array<string>
+     */
+    private array $bundles = [];
+
+    /**
+     * @param array<string> $bundles
+     */
+    public function addParameters(array $bundles): void
+    {
+        $this->bundles = $bundles;
+    }
+
     #[\Override]
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
@@ -73,6 +86,10 @@ final class ExtractedDataAdmin extends AbstractAdmin
             ->add('content', null, ['template' => '@GrabitAdminSonata/Admin/ExtractedData/show_content.html.twig'])
             ->add('publishedAt')
             ->add('createdAt')
+            ->add('source')
         ;
+        if (isset($this->bundles['GrabitFrontFeedBundle'])) {
+            $show->add('source.feeds');
+        }
     }
 }

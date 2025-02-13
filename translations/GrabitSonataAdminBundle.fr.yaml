@@ -1,5 +1,10 @@
+Source Create: Créer une Source
 Feeds: Flux
 Feed List: Liste des Flux
+Feed Create: Créer un Flux
+Templates: Modèles
+Templates List: Liste des Modèles
+Template Create: Créer un Modèle
 Source List: Liste des Sources
 Template List: Liste des Templates
 ExtractedData: Données extraites
@@ -25,6 +30,7 @@ Content: Contenu
 Content Title: Titre du contenu
 Published At: Date de publication
 Created At: Date de création
+Source Feeds: Flux de la source
 Results: Résultats
 
 Test grabbing: Tester l'extraction

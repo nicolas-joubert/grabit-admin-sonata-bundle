@@ -6,9 +6,11 @@ namespace NicolasJoubert\GrabitAdminSonataBundle\Admin;
 
 use NicolasJoubert\GrabitAdminSonataBundle\Form\TemplateConfigurationType;
 use NicolasJoubert\GrabitBundle\Model\TemplateInterface;
+use NicolasJoubert\GrabitBundle\Repository\SourceRepositoryInterface;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
@@ -19,6 +21,13 @@ use Sonata\AdminBundle\Show\ShowMapper;
  */
 final class TemplateAdmin extends AbstractAdmin
 {
+    private SourceRepositoryInterface $sourceRepository;
+
+    public function addServices(SourceRepositoryInterface $sourceRepository): void
+    {
+        $this->sourceRepository = $sourceRepository;
+    }
+
     #[\Override]
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
@@ -35,6 +44,10 @@ final class TemplateAdmin extends AbstractAdmin
             ->addIdentifier('id')
             ->add('code')
             ->add('label')
+            ->add('sources', FieldDescriptionInterface::TYPE_ONE_TO_MANY, [
+                // @phpstan-ignore method.notFound
+                'accessor' => fn (TemplateInterface $subject) => $this->sourceRepository->findByTemplate($subject->getCode()),
+            ])
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show' => [],
@@ -64,6 +77,11 @@ final class TemplateAdmin extends AbstractAdmin
             ->add('id')
             ->add('code')
             ->add('label')
+            ->add('sources', FieldDescriptionInterface::TYPE_ONE_TO_MANY, [
+                // @phpstan-ignore method.notFound
+                'accessor' => fn (TemplateInterface $subject) => $this->sourceRepository->findByTemplate($subject->getCode()),
+                'associationAdmin' => 'test',
+            ])
             ->add('configuration')
         ;
     }
