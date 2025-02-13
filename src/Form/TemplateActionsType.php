@@ -40,7 +40,14 @@ class TemplateActionsType extends AbstractType
                 'entry_type' => TemplateActionsType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'entry_options' => ['with_concat' => false],
+                'entry_options' => ['with_concat' => false, 'with_fallback' => false],
+            ]);
+        }
+        if (isset($options['with_fallback']) && $options['with_fallback']) {
+            $builder->add('fallback', TemplateActionsType::class, [
+                'attr' => ['class' => 'col-sm-offset-1'],
+                'with_concat' => false,
+                'with_fallback' => false,
             ]);
         }
     }
@@ -50,6 +57,7 @@ class TemplateActionsType extends AbstractType
     {
         $resolver->setDefaults([
             'with_concat' => true,
+            'with_fallback' => true,
         ]);
     }
 }
