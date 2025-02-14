@@ -158,6 +158,19 @@ final class SourceAdmin extends AbstractAdmin
         ;
     }
 
+    #[\Override]
+    protected function configureBatchActions(array $actions): array
+    {
+        if ($this->hasRoute('edit') && $this->hasAccess('edit')) {
+            $actions['enable'] = [
+                'ask_confirmation' => false,
+                'controller' => 'grabit_sonata_admin.controller.admin.source_controller::batchEnableAction',
+            ];
+        }
+
+        return $actions;
+    }
+
     /**
      * @return array{'choices': array<string, string>, 'choice_translation_domain': string}
      */

@@ -2,26 +2,31 @@
 
 namespace NicolasJoubert\GrabitAdminSonataBundle\Controller\Admin;
 
+use NicolasJoubert\GrabitAdminSonataBundle\Admin\SourceAdmin;
 use NicolasJoubert\GrabitBundle\Grabber\Exceptions\CrawlerException;
 use NicolasJoubert\GrabitBundle\Grabber\Exceptions\GrabException;
 use NicolasJoubert\GrabitBundle\Grabber\Grabber;
 use NicolasJoubert\GrabitBundle\Model\SourceInterface;
-use Sonata\AdminBundle\Controller\CRUDController;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @phpstan-template T of SourceInterface
- *
- * @phpstan-extends CRUDController<T>
- */
-class SourceController extends CRUDController
+class SourceController extends AbstractController
 {
-    public function __construct(readonly private Grabber $grabber) {}
+    public function __construct(
+        readonly private Grabber $grabber,
+        readonly private TranslatorInterface $translator,
+    ) {}
 
-    public function grab(int $id, Request $request): Response
+    /**
+     * @param SourceAdmin<SourceInterface> $admin
+     */
+    public function grab(SourceAdmin $admin, Request $request): Response
     {
-        $object = $this->admin->getSubject();
+        $object = $admin->getSubject();
 
         $grabbedItems = [];
         $grabbedError = $grabbedDebug = '';
@@ -39,11 +44,44 @@ class SourceController extends CRUDController
         }
 
         return $this->render('@GrabitAdminSonata/Admin/Source/grab.html.twig', [
+            'admin' => $admin,
             'action' => 'show',
             'object' => $object,
             'grabbedItems' => $grabbedItems,
             'grabbedError' => $grabbedError,
             'grabbedDebug' => $grabbedDebug,
         ]);
+    }
+
+    /**
+     * @param SourceAdmin<SourceInterface>         $admin
+     * @param ProxyQueryInterface<SourceInterface> $query
+     */
+    public function batchEnable(ProxyQueryInterface $query, SourceAdmin $admin): RedirectResponse
+    {
+        $admin->checkAccess('edit');
+
+        try {
+            $modelManager = $admin->getModelManager();
+
+            /** @var array<SourceInterface> $selectedModels */
+            $selectedModels = $query->execute();
+            foreach ($selectedModels as $selectedModel) {
+                $selectedModel->setEnabled(true);
+                $modelManager->update($selectedModel);
+            }
+
+            $this->addFlash(
+                'sonata_flash_success',
+                $this->translator->trans('flash_batch_enable_success', [], $admin->getTranslationDomain())
+            );
+        } catch (\Exception) {
+            $this->addFlash(
+                'sonata_flash_error',
+                $this->translator->trans('flash_batch_enable_error', [], $admin->getTranslationDomain())
+            );
+        } finally {
+            return new RedirectResponse($admin->generateUrl('list', ['filter' => $admin->getFilterParameters()]));
+        }
     }
 }

@@ -5,7 +5,7 @@ services:
       - [ addServices, ['@grabit.grabber.template'] ]
       - [ setTranslationDomain, [ 'GrabitSonataAdminBundle' ] ]
     tags:
-      - { name: sonata.admin, model_class: '%grabit.model.source.class%', controller: 'grabit_sonata_admin.controller.admin.source_controller', manager_type: orm, group: Configuration, label: Sources }
+      - { name: sonata.admin, model_class: '%grabit.model.source.class%', controller: ~, manager_type: orm, group: Configuration, label: Sources }
 
   grabit_sonata_admin.admin.configuration.feed:
     class: NicolasJoubert\GrabitAdminSonataBundle\Admin\FeedAdmin
