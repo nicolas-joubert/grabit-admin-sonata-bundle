@@ -17,6 +17,7 @@ Template: Modèle
 Stop On Last Unique Content Id: Stopper l'exécution sur le dernier identifiant unique
 Result Format: Format du résultat
 Enabled: Activé
+Enable: Activer
 Max Number Error: Nombre maximum d'erreurs
 Count Error: Nombre d'erreurs
 Last Error: Dernière erreur
@@ -38,3 +39,6 @@ Test grabbing: Tester l'extraction
 enum.source_proxy.none: Aucun
 enum.source_proxy.squid: Squid (https://www.squid-cache.org/)
 enum.source_proxy.flaresolverr: Flaresolverr (https://github.com/FlareSolverr/FlareSolverr)
+
+flash_batch_enable_success: Les sources sélectionnées ont été activées.
+flash_batch_enable_error: Une erreur est survenue lors de l'activation des sources sélectionnées.
