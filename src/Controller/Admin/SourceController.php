@@ -17,8 +17,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class SourceController extends AbstractController
 {
     public function __construct(
-        readonly private Grabber $grabber,
-        readonly private TranslatorInterface $translator,
+        private readonly Grabber $grabber,
+        private readonly TranslatorInterface $translator,
     ) {}
 
     /**
