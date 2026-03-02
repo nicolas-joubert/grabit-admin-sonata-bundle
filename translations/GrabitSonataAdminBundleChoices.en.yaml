@@ -3,6 +3,10 @@ template:
         symfony_blog: 'Symfony blog'
         symfony_ux_blog: 'Symfony UX blog'
         sylius_blog: 'Sylius blog'
+        ticketmaster_api: 'Ticketmaster API'
+        francebillet: 'FranceBillet'
+        php: 'PHP Changelog'
+        github_release: 'GitHub Releases'
     type:
         auto: 'Automatic'
         text: 'Text'
