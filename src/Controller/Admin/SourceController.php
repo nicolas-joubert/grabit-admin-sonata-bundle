@@ -16,20 +16,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SourceController extends AbstractController
 {
-    /**
-     * @param SourceAdmin<SourceInterface>         $admin
-     * @param ProxyQueryInterface<SourceInterface> $query
-     */
     public function __construct(
         private readonly Grabber $grabber,
         private readonly TranslatorInterface $translator,
-        private readonly SourceAdmin $admin,
-        private readonly ProxyQueryInterface $query,
     ) {}
 
-    public function grab(Request $request): Response
+    /**
+     * @param SourceAdmin<SourceInterface> $admin
+     */
+    public function grab(SourceAdmin $admin, Request $request): Response
     {
-        $object = $this->admin->getSubject();
+        $object = $admin->getSubject();
 
         $grabbedItems = [];
         $grabbedError = $grabbedDebug = '';
@@ -47,7 +44,7 @@ class SourceController extends AbstractController
         }
 
         return $this->render('@GrabitAdminSonata/Admin/Source/grab.html.twig', [
-            'admin' => $this->admin,
+            'admin' => $admin,
             'action' => 'show',
             'object' => $object,
             'grabbedItems' => $grabbedItems,
@@ -56,15 +53,19 @@ class SourceController extends AbstractController
         ]);
     }
 
-    public function batchEnable(): RedirectResponse
+    /**
+     * @param SourceAdmin<SourceInterface>         $admin
+     * @param ProxyQueryInterface<SourceInterface> $query
+     */
+    public function batchEnable(ProxyQueryInterface $query, SourceAdmin $admin): RedirectResponse
     {
-        $this->admin->checkAccess('edit');
+        $admin->checkAccess('edit');
 
         try {
-            $modelManager = $this->admin->getModelManager();
+            $modelManager = $admin->getModelManager();
 
             /** @var array<SourceInterface> $selectedModels */
-            $selectedModels = $this->query->execute();
+            $selectedModels = $query->execute();
             foreach ($selectedModels as $selectedModel) {
                 $selectedModel->setEnabled(true);
                 $modelManager->update($selectedModel);
@@ -72,15 +73,15 @@ class SourceController extends AbstractController
 
             $this->addFlash(
                 'sonata_flash_success',
-                $this->translator->trans('flash_batch_enable_success', [], $this->admin->getTranslationDomain())
+                $this->translator->trans('flash_batch_enable_success', [], $admin->getTranslationDomain())
             );
         } catch (\Exception) {
             $this->addFlash(
                 'sonata_flash_error',
-                $this->translator->trans('flash_batch_enable_error', [], $this->admin->getTranslationDomain())
+                $this->translator->trans('flash_batch_enable_error', [], $admin->getTranslationDomain())
             );
         } finally {
-            return new RedirectResponse($this->admin->generateUrl('list', ['filter' => $this->admin->getFilterParameters()]));
+            return new RedirectResponse($admin->generateUrl('list', ['filter' => $admin->getFilterParameters()]));
         }
     }
 }
