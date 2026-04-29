@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NicolasJoubert\GrabitAdminSonataBundle\Twig\Runtime;
 
 use Twig\Extension\RuntimeExtensionInterface;

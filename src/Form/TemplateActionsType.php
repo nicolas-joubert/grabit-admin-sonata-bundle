@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace NicolasJoubert\GrabitAdminSonataBundle\Form;
 
 use Sonata\AdminBundle\Form\Type\CollectionType;
