@@ -2,6 +2,7 @@
 
 use Rector\Config\RectorConfig;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
+use Rector\Symfony\CodeQuality\Rector\Class_\ControllerMethodInjectionToConstructorRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\ValueObject\PhpVersion;
 
@@ -24,5 +25,9 @@ return RectorConfig::configure()
         ],
         // ignore files created by recipes
         __DIR__.'/src/Kernel.php',
+        // Sonata services with context cannot be autowire
+        ControllerMethodInjectionToConstructorRector::class => [
+            __DIR__.'/src/Controller/Admin/SourceController.php',
+        ],
     ])
 ;
